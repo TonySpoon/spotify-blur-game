@@ -1,9 +1,6 @@
-import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div> 
       <h1>Coverdle</h1>
@@ -15,6 +12,12 @@ function App() {
           className="album-cover"
         />  
       </div>
+
+      <div className="guess-container">
+        <input type="text" placeholder="Enter your guess..." className="guess-input" />
+        <button className="guess-button">Guess</button>
+      </div>
+
     </div>
   )
 }

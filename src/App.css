@@ -5,6 +5,13 @@ h1 {
   font-family: 'Segoe UI', calibri, 'Helvetica Neue', sans-serif;
 }
 
+.guess-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
 .album-container {
   display: flex;
   justify-content: center;
@@ -16,5 +23,5 @@ h1 {
   width: 300px;
   height: 300px;
   object-fit: cover;
-  filter: blur(50px);
+  filter: blur(00px);
 }
