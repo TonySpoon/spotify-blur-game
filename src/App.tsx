@@ -7,12 +7,16 @@ function App() {
 
   const[blur, setBlur] = useState(50)
   const[guess, setGuess] = useState('')
+  const[showVignette, setShowVignette] = useState(false)
 
+  const vignetteSize = 70 - (50 - blur*2) / 2
+  const vignetteOpacity = .5 + (50 - blur*2) / 100
+  
   const BLURREDUCTION = 10
 
-  const FADEDURATION = 2000
+  const ALERTFADEDURATION = 1000
 
-  const handleGuess = () => { //Handles logic for inputted guesses
+  const handleGuess = async () => { //Handles logic for inputted guesses
     toast.dismissAll() //Dismisses any existing toasts before showing a new one
     if (guess.trim().toLowerCase() === '') { //If the user enters a blank guess, print an error message but do not reduce the blur
       toast.error('Please enter a guess before submitting.')
@@ -26,22 +30,29 @@ function App() {
       if (blur - BLURREDUCTION < 0) { //If the user has run out of attempts, show a game over message and end the game
         toast.error('Game over! You have run out of attempts.')
         setBlur(-1)
-        
       } else { //If the user still has attempts left, show an error message and reduce the blur
         toast.error('Incorrect guess. Try again!')
         setBlur(blur - BLURREDUCTION)
       }
     }
+    setShowVignette(true)
     setGuess('')
   }
 
   return (
     <div> 
-      <h1>Coverdle</h1>
+
+      {showVignette && (<div 
+        className="screen-overlay"
+        style = {{background: `radial-gradient(ellipse 60% 60% at 50% 31%, transparent ${vignetteSize}%, rgba(0, 0, 0, ${vignetteOpacity}) 100%)`}}
+        />
+        )}
+
+      <h1>UNTITLED</h1>
 
       <Toaster 
         position="bottom-center"
-        toastOptions={{ duration: FADEDURATION }}
+        toastOptions={{ duration: ALERTFADEDURATION }}
        />
 
       <div className="album-container">
@@ -68,7 +79,6 @@ function App() {
           onClick={handleGuess}>Guess
         </button>
       </div>
-
     </div>
   )
 }
