@@ -9,7 +9,19 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 80px;
+}
+
+.guess-boxes {
+  position: relative;
+  display: inline-block;
+  margin: 0.5em;
+  inset: 0;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  top: 80px;
+  background-color: rgba(111, 111, 112, 0.151);
 }
 
 .album-container {
