@@ -1,45 +1,43 @@
 h1 {
   text-align: center;
   font-size: 5rem;
-  margin-top: 50px;
+  margin-top: .5em;
   font-family: 'Segoe UI', calibri, 'Helvetica Neue', sans-serif;
 }
 
 .guess-container {
-  display: flex;
+  display: relative;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 3em;
 }
 
 .guess-boxes {
   position: relative;
   display: inline-block;
   margin: 0.5em;
-  inset: 0;
   align-items: center;
-  height: 40px;
-  width: 40px;
-  top: 60px;
+  height: 2em;
+  width: 2em;
+  top: 3.5em;
   background-color: rgba(111, 111, 112, 0.151);
 }
 
 .album-container {
-  display: flex;
+  display: relative;
   justify-content: center;
   align-items: center;
 }
 
 .album-cover {
-  width: 300px;
-  height: 300px;
+  width: 18.75em;
+  height: 18.75em;
   object-fit: cover;
 }
 
 .screen-overlay {
-  position: fixed;
+  position: fixed; 
   inset: 0;
-  margin-top: 20px;
   pointer-events: none;
   z-index: 9999;
 }

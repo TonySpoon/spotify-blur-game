@@ -6,16 +6,28 @@ import './App.css'
 function App() {
 
   const[blur, setBlur] = useState(50)
-  const[guess, setGuess] = useState('')
   const[showVignette, setShowVignette] = useState(false)
-  const[win, setWin] = useState(false)
+  const[guess, setGuess] = useState('')
 
-  const vignetteSize = 70 - (50 - blur*2) / 2
-  const vignetteOpacity = .5 + (50 - blur*2) / 100
+  const[lose, setLose] = useState(false)
+  const[win, setWin] = useState(false)
+  const[attempts, setAttempts] = useState(0)
+
+  const revealProgress = 50 - blur*2
+  const vignetteSize = 70 - (revealProgress) / 2
+  const vignetteOpacity = .5 + (revealProgress) / 100
   
   const BLURREDUCTION = 10
 
-  const ALERTFADEDURATION = 2000
+  const ALERTFADEDURATION = 3000
+
+  const boxX = (boxNum: number) => {
+
+  }
+
+  const boxCheck = (boxNum: number) => {
+
+  }
 
   const handleGuess = () => { //Handles logic for inputted guesses
     toast.dismissAll() //Dismisses any existing toasts before showing a new one
@@ -29,11 +41,13 @@ function App() {
       setBlur(0)
       setShowVignette(false)
       setWin(true)
+      boxCheck(attempts)
       return
     } else { //If the guess is incorrect, handles game logic
       if (blur - BLURREDUCTION < 0) { //If the user has run out of attempts, show a game over message and end the game
-        toast.error('Game over! You have run out of attempts.')
+        toast.error('You have run out of attempts. The album was "Feedbacker" by Boris')
         setBlur(-100)
+        setLose(true)
       } else { //If the user still has attempts left, show an error message and reduce the blur
         toast.error('Incorrect guess. Try again!')
         setBlur(blur - BLURREDUCTION)
@@ -92,12 +106,12 @@ function App() {
           value={guess} 
           onChange={(e) => setGuess(e.target.value)} 
           onKeyDown={(e) => e.key === 'Enter' && handleGuess()}
-          disabled={blur<0 || win}
+          disabled={lose || win}
           type="text" placeholder="Enter your guess..." 
           className="guess-input" />
 
         <button 
-          disabled={blur<0 || win}
+          disabled={lose || win}
           className="guess-button" 
           onClick={handleGuess}>Guess
         </button>
